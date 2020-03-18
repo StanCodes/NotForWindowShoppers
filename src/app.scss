@@ -1,0 +1,12 @@
+@import './scss/variables';
+@import './scss/functions';
+@import './scss/mixins';
+
+@import './scss/base';
+
+//components
+@import './scss/components/header-bar';
+@import './scss/components/products-list';
+@import './scss/components/shopping-cart';
+
+@include font('Baloo2-Regular', './content/fonts/Baloo2-Regular', 500, 'normal');

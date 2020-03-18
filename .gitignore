@@ -1,0 +1,11 @@
+# Project dependencies
+node_modules
+package-lock.json
+
+# Build directory
+/dist
+/public
+.DS_Store
+
+#GIT
+.git
