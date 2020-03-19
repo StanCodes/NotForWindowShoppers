@@ -1,4 +1,7 @@
 {
   "presets": ["@babel/env", "@babel/react"],
-  "plugins": ["syntax-dynamic-import", "react-hot-loader/babel"]
+  "plugins": ["syntax-dynamic-import", "react-hot-loader/babel",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  ]
 }

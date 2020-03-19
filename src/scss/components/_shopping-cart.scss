@@ -39,10 +39,23 @@
 .shopping-cart__list-item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 10px;
     margin-bottom: 5px;
     padding: 5px 0px;
     border-bottom: 1px solid $light-gray;
+}
+
+.cart-list-item__button {
+    border: none;
+    cursor: pointer;
+    padding: 0px;
+    margin-right: 10px;
+}
+
+.cart-list-item__product {
+    line-height: 1;
+    margin-right: auto;
 }
 
 .shopping-cart__summary {

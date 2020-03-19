@@ -1,29 +1,34 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { observer } from 'mobx-react'
 
-const ShoppingCart = (props) => {
-    return(
-        <section className={`shopping-cart ${props.show ? 'sc-opened': ''}`}>
-            <h2 className='shopping-cart__title'>Your shopping list</h2>
-            <ul className='shopping-cart__list'>
-                <li className='shopping-cart__list-item'>
-                    <span className='cart-list-item__product'>Product 2</span>
-                    <span className='cart-list-item__price'>10.00$</span>
-                </li>
-                <li className='shopping-cart__list-item'>
-                    <span className='cart-list-item__product'>Product 3</span>
-                    <span className='cart-list-item__price'>12.56$</span>
-                </li>
-                <li className='shopping-cart__list-item'>
-                    <span className='cart-list-item__product'>Product 4</span>
-                    <span className='cart-list-item__price'>15.00$</span>
-                </li>
-            </ul>
-            <div className='shopping-cart__summary'>
-                <p className='cart-summary__total'>Total:</p>
-                <span className='cart-summary__total-price'>37.56$</span>
-            </div>
-        </section>
-    )
+import ShoppingCartListItem from './ShoppingCartListItem'
+
+@observer
+class ShoppingCart extends Component {
+    constructor(props){
+        super(props)
+    }
+
+    render() {
+        const { show, store } = this.props
+        const { cartProducts, cartProductsTotal } = store
+
+        return(
+            <section className={`shopping-cart ${show ? 'sc-opened': ''}`}>
+                <h2 className='shopping-cart__title'>Your shopping list</h2>
+                <ul className='shopping-cart__list'>
+                    {cartProducts.map( product => 
+                        <ShoppingCartListItem product={product} removeProductClick={() => store.removeProductFromCart(product.id)} key={product.id} />
+                    )}
+                    {!cartProducts.length && <p>No products in your cart</p>}
+                </ul>
+                {cartProducts.length != 0 && <div className='shopping-cart__summary'>
+                    <p className='cart-summary__total'>Total:</p>
+                    <span className='cart-summary__total-price'>{cartProductsTotal}$</span>
+                </div>}
+            </section>
+        )
+    }
 }
 
 export default ShoppingCart

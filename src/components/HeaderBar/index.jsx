@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { observer } from 'mobx-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import ShoppingCart from '../ShoppingCart'
 
-export default class HeaderBar extends Component {
+@observer
+class HeaderBar extends Component {
     constructor(props){
         super(props)
 
@@ -28,6 +30,9 @@ export default class HeaderBar extends Component {
     }
 
     render() {
+        const { store } = this.props
+        const { showShoppingCart } = this.state
+        
         return(
             <nav className='header-bar'>
                 <h1 className='header-bar__title'>NFWShoppers</h1>
@@ -37,10 +42,12 @@ export default class HeaderBar extends Component {
                     onMouseLeave={this.handleSCHide}
                 >
                     <FontAwesomeIcon icon='shopping-cart' color='white' className='header-bar__shopping-icon' />
-                    <span className='header-bar__products-count'>3</span>
-                    <ShoppingCart show={this.state.showShoppingCart} />
+                    <span className='header-bar__products-count'>{store.cartProductsCount}</span>
+                    <ShoppingCart show={showShoppingCart} store={store} />
                 </span>
             </nav>
         )
     }
 }
+
+export default HeaderBar
