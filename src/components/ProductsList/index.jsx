@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 
+import FilterInput from './FilterInput'
 import ProductListItem from './ProductListItem'
 
 @observer
@@ -11,10 +12,13 @@ class ProductsList extends Component {
 
     render() {
         const store = this.props.store
-        const products = store.allProducts
+        const products = store.filteredProducts
         return(
             <section className='products-list'>
-                <h1 className='products-list__title'>All products list</h1>
+                <div className='product-list__group'>
+                    <h1 className='products-list__title'>All products list</h1>
+                    <FilterInput store={store} />
+                </div>
                 <ul className='products-list__list'>
                     {products.map(product => 
                         <ProductListItem product={product} 

@@ -7,6 +7,30 @@
     }
 }
 
+.product-list__group {
+    @include bp(sm) {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+}
+
+.product-list__filter {
+    width: 200px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid $black;
+    padding-left: 10px;
+    
+    @include bp(sm) {
+        margin-left: 30px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
 .products-list__title {
     
 }

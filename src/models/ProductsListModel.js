@@ -2,7 +2,12 @@ import { observable, computed, action } from 'mobx'
 //import ProductModel from './ProductModel'
 
 class ProductsListModel {
+    constructor(){
+        this.filterProducts()
+    }
     @observable cartProducts = []
+
+    @observable filteredProducts = []
     
     @observable allProducts = [
         { id: 1, name: 'So expensive keyboard', descr: 'Get rich or die tryin', price: 300 },
@@ -37,6 +42,15 @@ class ProductsListModel {
 
     @action removeProductFromCart(id) {
         this.cartProducts = this.cartProducts.filter(product => product.id !== id)
+    }
+
+    @action filterProducts(filterString) {
+        if(!filterString){
+            this.filteredProducts = this.allProducts
+            return
+        }
+
+        this.filteredProducts = this.allProducts.filter(p => p.name.toLowerCase().indexOf(filterString.toLowerCase()) > -1)
     }
 }
 
